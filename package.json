@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "out-out",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,8 +10,23 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.6",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.1",
-    "astro": "^5.7.10"
+    "@astrojs/react": "^4.2.6",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-tabs": "^1.1.9",
+    "@tailwindcss/vite": "^4.1.5",
+    "@types/react": "^18.3.20",
+    "@types/react-dom": "^18.3.6",
+    "astro": "^5.7.9",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.503.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "tw-animate-css": "^1.2.8"
   }
 }

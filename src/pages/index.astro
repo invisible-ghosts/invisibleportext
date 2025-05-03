@@ -1,49 +1,392 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
----
+// Component Imports
+import Layout from '@/layouts/Layout.astro';
+import { InvisibleTextTool } from '@/components/InvisibleText';
+import {Copy, Check} from "lucide-react";
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+const title = "Invisible Text - Copy and Paste Blank Character"
+const description = ""
+---
+<Layout title={title} description={description}>
+	<main>
+		<section class="text-center mb-16 px-4 py-12">	
+			<h1 class="text-6xl font-black tracking-tight mb-2">
+				INVISIBLE TEXT
+				<div class="h-2 w-1/3 bg-emerald-400 mx-auto mt-2"></div>
+			</h1>
+			<p class="text-xl mt-8 max-w-3xl mx-auto">
+				Welcome to our <span class="font-bold">free online invisible text generator</span>! Hide messages in
+				plain sight using <span class="font-bold">zero-width characters</span>,{" "}
+				<span class="font-bold">color masking</span>, and more.
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</section>
+		<section class="px-4">
+			<InvisibleTextTool client:load/>
+		</section>
+		<section class="container mx-auto px-4 py-8">
+			<h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+				WHAT IS INVISIBLE TEXT?
+				<div class="h-1 w-32 bg-emerald-400 mx-auto mt-2"></div>
+			</h2>
+			<div class="max-w-3xl mx-auto">
+				<p class="text-lg text-gray-700 mb-6">
+				Invisible text refers to characters or strings that are present in a document or message but are not visible
+				to the human eye. These characters take up space in digital text but don't display any visible content.
+				They're often used for formatting, spacing, or hiding information in plain sight.
+				</p>
+				<p class="text-lg text-gray-700 mb-6">The most common types of invisible characters include:</p>
+				<ul class="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+					<li>Zero-width spaces (ZWSP)</li>
+					<li>Zero-width non-joiners (ZWNJ)</li>
+					<li>Zero-width joiners (ZWJ)</li>
+					<li>Word joiners (WJ)</li>
+					<li>Soft hyphens</li>
+				</ul>
+				<p class="text-lg text-gray-700">These special Unicode characters serve various purposes in digital text processing but appear as empty space
+				to readers.
+				</p>
+			</div>
+		</section>
+		<section id="what-is" class="max-w-4xl mx-auto mb-20 mt-24 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				WHAT IS INVISIBLE TEXT?
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="prose prose-lg max-w-none">
+				<p>Invisible text refers to characters or strings that are present in a document or message but are not
+				visible to the naked eye. This is achieved through various techniques such as using zero-width characters,
+				applying color masking (white text on white background), or utilizing special Unicode characters that have
+				no visible representation.</p>
+				<p>These invisible characters still exist in the digital space and can be copied, pasted, and transmitted
+				just like regular text. However, they remain hidden from casual observation, making them useful for
+				various applications where discreet communication is desired.</p>
+			</div>
+		</section>	
+		<section id="how-to" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				HOW TO COPY-PASTE INVISIBLE TEXT
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+					<span class="font-bold text-xl">1</span>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Choose Method</h3>
+				<p>Select from our quick copy buttons, manual selection, or custom generator options.</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+					<span class="font-bold text-xl">2</span>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Copy</h3>
+				<p>Copy the invisible characters to your clipboard with a single click.</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+					<span class="font-bold text-xl">3</span>
+				</div>
+				<h3 class="text-xl font-bold mb-2">Test & Use</h3>
+				<p>Test your invisible text in our testing area, then use it anywhere you need it.</p>
+				</div>
+			</div>
+		</section>
+		<section id="why-use" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				WHY WOULD YOU NEED INVISIBLE TEXT?
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Privacy & Discretion</h3>
+				<p>
+					Invisible text allows you to hide messages in plain sight, providing an additional layer of privacy for
+					sensitive information that you don't want to be immediately visible.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Creative Uses</h3>
+				<p>
+					Create unique usernames in games, send blank messages on social platforms, or add hidden watermarks to
+					your content to track unauthorized copying.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Digital Steganography</h3>
+				<p>
+					Hide messages within other messages or documents, allowing for covert communication that doesn't draw
+					attention to itself.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Accessibility</h3>
+				<p>
+					Add hidden context or metadata to content that can be accessed by screen readers or other assistive
+					technologies without affecting visual presentation.
+				</p>
+				</div>
+			</div>
+		</section>	
+		<section id="who-uses" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				WHO USES INVISIBLE TEXT?
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Gamers</h3>
+				<p>
+					Players of games like Free Fire, PUBG, and other online games use invisible characters to create unique,
+					minimal usernames that stand out or appear blank.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Social Media Users</h3>
+				<p>
+					People who want to create unique profiles, send blank messages, or hide information within regular posts
+					on platforms like Instagram, Twitter, and Discord.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Content Creators</h3>
+				<p>
+					Writers, designers, and digital artists who want to add hidden watermarks or metadata to their work to
+					track unauthorized use.
+				</p>
+				</div>
+			</div>
+		</section>
+		<section id="features" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				FEATURES OF OUR INVISIBLE TEXT TOOL
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Multiple Invisibility Methods</h3>
+					<p>Choose from various techniques including zero-width characters, color masking, and more.</p>
+				</div>
+				</div>
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Quick Copy Buttons</h3>
+					<p>Instantly copy small, medium, or large invisible characters with a single click.</p>
+				</div>
+				</div>
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Custom Generator</h3>
+					<p>Generate any number of invisible characters from 1 to infinity with our custom generator.</p>
+				</div>
+				</div>
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Testing Area</h3>
+					<p>Test your invisible characters before using them to ensure they work as expected.</p>
+				</div>
+				</div>
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Character Counter</h3>
+					<p>See exactly how many invisible characters you've generated or pasted.</p>
+				</div>
+				</div>
+				<div class="flex gap-4">
+				<div class="w-12 h-12 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-6 h-6 text-emerald-600" />
+				</div>
+				<div>
+					<h3 class="text-xl font-bold mb-2">Advanced Text Encoding</h3>
+					<p>Hide entire messages within invisible characters that can be decoded later.</p>
+				</div>
+				</div>
+			</div>
+		</section>
+		<section id="benefits" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				BENEFITS OF USING INVISIBLETEXT.TOP
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="bg-white p-8 rounded-xl border-2 border-black shadow-md">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">100% Free</h3>
+					<p class="text-sm">No hidden fees or premium features locked behind paywalls.</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">No Registration Required</h3>
+					<p class="text-sm">Use our tool instantly without creating an account.</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">Privacy-Focused</h3>
+					<p class="text-sm">We don't store your text or track your usage.</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">User-Friendly Interface</h3>
+					<p class="text-sm">Simple, intuitive design that anyone can use.</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">More Methods Than Competitors</h3>
+					<p class="text-sm">We offer more ways to create and use invisible text than any other tool.</p>
+					</div>
+				</div>
+				<div class="flex gap-4">
+					<div class="w-10 h-10 bg-emerald-100 rounded-full flex-shrink-0 flex items-center justify-center">
+					<Check className="w-5 h-5 text-emerald-600" />
+					</div>
+					<div>
+					<h3 class="text-lg font-bold mb-1">Mobile-Friendly</h3>
+					<p class="text-sm">Works perfectly on smartphones and tablets.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+		</section>
+		<section id="use-cases" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				PRACTICAL USE CASES
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Gaming</h3>
+				<p class="mb-4">
+					Create unique "invisible" usernames in games like Free Fire, PUBG, and other online games to stand out
+					from other players.
+				</p>
+				<div class="bg-gray-100 p-4 rounded-lg">
+					<p class="text-sm font-medium">Example:</p>
+					<p class="font-mono">PlayerName: "⁣ ⁣"</p>
+					<p class="text-xs text-gray-500 mt-2">(Appears as a blank or minimal username)</p>
+				</div>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Social Media</h3>
+				<p class="mb-4">
+					Send blank messages on platforms like WhatsApp, Telegram, or Discord, or create unique-looking profiles.
+				</p>
+				<div class="bg-gray-100 p-4 rounded-lg">
+					<p class="text-sm font-medium">Example:</p>
+					<p class="font-mono">Message: "⁣ ⁣"</p>
+					<p class="text-xs text-gray-500 mt-2">
+					(Appears as an empty message but can be copied and decoded)
+					</p>
+				</div>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Digital Watermarking</h3>
+				<p class="mb-4">
+					Add invisible signatures to your content that can be used to verify authenticity or track unauthorized
+					copying.
+				</p>
+				<div class="bg-gray-100 p-4 rounded-lg">
+					<p class="text-sm font-medium">Example:</p>
+					<p class="font-mono">Document: "This is my content‍‌‍‌‍‌‍‌."</p>
+					<p class="text-xs text-gray-500 mt-2">(Contains hidden watermark that's invisible to readers)</p>
+				</div>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-4">Hidden Messages</h3>
+				<p class="mb-4">
+					Embed secret messages within regular text that can only be revealed by those who know to look for them.
+				</p>
+				<div class="bg-gray-100 p-4 rounded-lg">
+					<p class="text-sm font-medium">Example:</p>
+					<p class="font-mono">Public post: "Great weather today!‍‌‍‌‍‌‍‌"</p>
+					<p class="text-xs text-gray-500 mt-2">(Contains hidden message: "Meet at 5pm")</p>
+				</div>
+				</div>
+			</div>
+		</section>
+		<section id="faq" class="max-w-4xl mx-auto mb-20 px-4">
+			<h2 class="text-4xl font-black tracking-tight mb-8">
+				FREQUENTLY ASKED QUESTIONS
+				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
+			</h2>
+			<div class="space-y-6">
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">Is invisible text really invisible?</h3>
+				<p>
+					Yes, invisible text is not visible to the naked eye when viewed normally. However, it can be revealed by
+					selecting the text, using our decoder tool, or through certain text editors that display special
+					characters.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">Will invisible text work on all platforms?</h3>
+				<p>
+					Most invisible text methods work across a wide range of platforms including social media, messaging
+					apps, and games. However, some platforms may have restrictions or filters that affect how invisible text
+					is displayed.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">Is using invisible text allowed in games?</h3>
+				<p>
+					This depends on the specific game's terms of service. Some games may consider using invisible characters
+					for usernames as a violation of their rules. Always check the game's policies before using invisible
+					text.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">How do I decode invisible text?</h3>
+				<p>
+					You can decode invisible text by using our "Test & Copy" area. Simply paste the text containing
+					invisible characters, and our tool will show you the character count and allow you to see the hidden
+					content.
+				</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">
+					What's the difference between the small, medium, and large invisible characters?
+				</h3>
+				<p>
+					The small, medium, and large options refer to the number of invisible characters generated. Small
+					creates 1 character, medium creates 5 characters, and large creates 10 characters. More characters can
+					make the invisible text more robust on certain platforms.
+				</p>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>

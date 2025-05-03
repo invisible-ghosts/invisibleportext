@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  pubDate: Date;
+  author: string;
+  authorImage?: string;
+  tags?: string[];
+  image?: string;
+}
+
+const { title, pubDate, author, authorImage, tags = [], image } = Astro.props;
+
+// Format date
+const formattedDate = new Date(pubDate).toISOString().slice(0, 10);
+---
+
+<div class="animate-fade-in">
+  <!-- Back to blog link -->
+  <a href="/blog" class="mb-8 inline-flex items-center gap-1 text-sm text-primary-600 transition-colors hover:text-black border hover:border hover:border-emerald-600 rounded-md p-2 hover:bg-white">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+    </svg>
+    Back to all posts
+  </a>
+
+  <!-- Hero image -->
+  {image && (
+    <div class="mb-8 overflow-hidden rounded-xl border border-gray-200">
+      <img src={image} alt={title} class="h-auto w-full object-cover" />
+    </div>
+  )}
+
+  <!-- Author and date -->
+  <div class="mb-4 flex items-center gap-3">
+    {authorImage ? (
+      <img src={authorImage} alt={author} class="h-10 w-10 rounded-full object-cover" />
+    ) : (
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-600">
+        {author.charAt(0)}
+      </div>
+    )}
+    <div>
+      <div class="font-medium">{author}</div>
+      <div class="text-sm text-gray-500">{formattedDate}</div>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <h1 class="mb-4 text-4xl font-bold">{title}</h1>
+
+  <!-- Tags -->
+  <div class="mb-8 flex flex-wrap gap-2">
+    {tags.map(tag => (
+      <a href={`/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`} 
+         class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-800 transition-colors hover:bg-primary-100 hover:text-primary-800">
+        {tag}
+      </a>
+    ))}
+  </div>
+</div>

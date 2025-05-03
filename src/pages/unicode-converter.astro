@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import UnicodeConverter from "@/components/UnicodeConverter";
+import UnicodeArticle from "@/components/UnicodeArticle";
+
+---
+<Layout title="Unicode Converter" description="Unicode Converter - Copy and Paste Blank Character">
+    <UnicodeConverter client:only/>
+    <UnicodeArticle client:only/>
+</Layout>

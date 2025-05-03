@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import { compareDesc } from 'date-fns';
+import Layout from '../../../layouts/Layout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+
+// Generate static paths for all tags
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog', ({ data }) => {
+    return !data.draft;
+  });
+  
+  // Extract all tags
+  const allTags = [...new Set(blogEntries.flatMap(post => post.data.tags || []))];
+  
+  // Create a path for each tag
+  return allTags.map(tag => {
+    // Filter posts that have this tag
+    const filteredPosts = blogEntries.filter(post => 
+      post.data.tags && post.data.tags.includes(tag)
+    );
+    
+    return { 
+      params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+      props: { 
+        tag, 
+        posts: filteredPosts 
+      },
+    };
+  });
+}
+
+// Get the tag and filtered posts
+const { tag, posts } = Astro.props;
+
+// Sort posts by date
+const sortedPosts = posts.sort((a, b) => 
+  compareDesc(new Date(a.data.pubDate), new Date(b.data.pubDate))
+);
+
+// Function to capitalize all words in a string
+function capitalizeAllWords(str) {
+  return str.replace(/\w\S*/g, function(txt){
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+}
+
+// Format tag for display using the new function
+const displayTag = capitalizeAllWords(tag);
+---
+
+<Layout title={`Blog Tag: ${displayTag}`} description={`Explore our articles about ${displayTag.toLowerCase()}`}>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+    <!-- Tag Header -->
+    <div class="mb-16 text-center">
+      <span class="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
+        {displayTag}
+      </span>
+      <h1 class="mt-4 text-4xl font-bold">Posts Tagged "{displayTag}"</h1>
+      <div class="mx-auto mt-2 h-1 w-24 bg-primary-500"></div>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+        Explore our articles about {displayTag.toLowerCase()}
+      </p>
+      <a href="/blog/" class="mt-4 inline-flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to all posts
+      </a>
+    </div>
+    
+    <!-- Posts Grid -->
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {sortedPosts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          author={post.data.author}
+          authorImage={post.data.authorImage}
+          slug={post.slug}
+          tags={post.data.tags}
+          image={post.data.image}
+        />
+      ))}
+    </div>
+    
+    {/* If no posts */}
+    {sortedPosts.length === 0 && (
+      <div class="mt-12 text-center">
+        <p class="text-lg text-gray-600">No posts found with this tag.</p>
+        <a href="/blog/" class="mt-4 inline-block rounded-md bg-primary-500 px-6 py-3 text-white hover:bg-primary-600">
+          View all posts
+        </a>
+      </div>
+    )}
+  </div>
+</Layout>
