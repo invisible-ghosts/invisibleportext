@@ -26,36 +26,29 @@ const { title, pubDate, description, author, authorImage, image, tags = [] } = e
 ---
 
 <Layout title={title} description={description}>
-  <article class="mx-auto max-w-4xl px-4 py-12 blog">
+  <div class="container mx-auto max-w-4xl px-4 py-12 blog">
     <PostHeader 
-      title={title}
       pubDate={pubDate}
       author={author}
       authorImage={authorImage}
       tags={tags}
       image={image}
     />
-    
-    <!-- Blog content -->
-    <div class="prose prose-lg max-w-none animate-slide-up">
-      <Content />
+    <div class="prose prose-lg  animate-slide-up">
+      <article>
+        <Content />
+      </article>
     </div>
-    
-     <!-- Related posts -->
+    <!-- Related posts -->
     <RelatedPosts entry={entry} tags={tags} />
-    
     <!-- Call to action -->
     <CallToAction />
-  </article>
+  </div>
 </Layout>
-<style>
 
-</style>
 <style is:global>
-  /* Add styling for MDX content */
   .prose {
     color: #374151;
-    max-width: 65ch;
     font-size: 1.125rem;
     line-height: 1.7;
   }

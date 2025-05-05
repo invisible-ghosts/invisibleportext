@@ -109,7 +109,7 @@ export default function UnicodeConverter({ className = "" }: UnicodeConverterPro
 
   return (
     <div className={`w-full max-w-3xl mx-auto p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md ${className}`}>
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">Unicode Converter</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Text to Unicode Converter</h2>
 
       <div className="flex flex-col md:flex-row gap-4 mb-4">
         <div className="flex-1">
@@ -167,7 +167,7 @@ export default function UnicodeConverter({ className = "" }: UnicodeConverterPro
       <div className="flex justify-between mb-4">
         <button
           onClick={handleConvert}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+          className="px-4 py-2 bg-black hover:bg-gray-900 text-white rounded-md transition-colors"
         >
           Convert
         </button>
@@ -204,7 +204,7 @@ export default function UnicodeConverter({ className = "" }: UnicodeConverterPro
       </div>
 
       <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
-        <h3 className="font-medium mb-2">About Unicode Conversion</h3>
+        <h3 className="text-xl font-medium mb-2">About Unicode Conversion</h3>
         <p>
           Unicode is a standard for encoding characters that includes almost all writing systems in the world. This tool
           helps you convert between readable text and various Unicode representations.

@@ -4,21 +4,17 @@ import { compareDesc } from 'date-fns';
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 
-// Get all blog posts
-
 const allPosts = await getCollection('blog', ({ data }) => {
   return !data.draft;
 });
 
-// Sort by date
+
 const posts = allPosts.sort((a, b) => 
   compareDesc(new Date(a.data.pubDate), new Date(b.data.pubDate))
 );
 
-// Get all unique tags
 const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))];
 ---
-
 <Layout title="Blog" description="Discover tips, tutorials, and insights about invisible text and its creative applications.">
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Blog Header -->
@@ -47,13 +43,13 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))];
     </div>
     
     <!-- CTA Section -->
-    <div class="mt-20 rounded-lg border border-gray-200 bg-emerald-200 p-12 text-center shadow-sm">
+    <div class="mt-20 rounded-lg border border-gray-200 bg-emerald-50 p-12 text-center shadow-sm">
       <h2 class="text-2xl font-bold">Want to learn more?</h2>
       <p class="mx-auto mt-4 max-w-2xl text-gray-600">
         Try our invisible text generator and discover creative ways to use invisible characters.
       </p>
       <div class="mt-8">
-        <a href="/generator" class="inline-flex items-center rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800">
+        <a href="/" class="inline-flex items-center rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800">
           Try the Generator
         </a>
       </div>

@@ -1,78 +1,106 @@
-<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md">
-    <div class="mx-auto flex max-w-7xl items-center justify-between p-4 ">
-        <a href="/" class="flex items-center gap-2">
-            <div class="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-md border border-gray-300 bg-white font-bold">IT</div>
-            <span class="text-base md:text-lg font-bold uppercase tracking-wider">INVISIBLE TEXT
-                <div class="h-1 w-full bg-emerald-400 mt-0.5"></div>
-            </span>
-        </a>
-        
-        <!-- Mobile menu button --> 
-        <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg bg-white hover:bg-gray-100">
-            <span class="sr-only">Open menu</span>
-            <div class="w-6 h-0.5 bg-gray-600 mb-1"></div>
-            <div class="w-6 h-0.5 bg-gray-600 mb-1"></div>
-            <div class="w-6 h-0.5 bg-gray-600"></div>
-        </button>
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { languages } from '@/i18n/ui';
+import LanguageSwitcher from './LanguageSwitcher';
 
-        <!-- Desktop navigation -->
-        <nav class="hidden md:block">
-            <ul class="flex items-center gap-6">
-                <li><a href="/features" class="text-sm hover:text-emerald-400">Features</a></li>
-                <li><a href="/blog" class="text-sm hover:text-emerald-400">Blog</a></li>
-                <li><a href="/about" class="text-sm hover:text-emerald-400">About Us</a></li>
-                <li><a href="/contact" class="text-sm hover:text-emerald-400">Contact</a></li>
-                <li><button class="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300">
-                        <span class="sr-only">Language</span>
-                        <span class="text-sm">🌐</span>
-                    </button></li>
-            </ul>
-        </nav>
 
-        <!-- Mobile navigation -->
-        <div id="mobile-menu" class="hidden fixed inset-0  bg-white md:hidden">
-            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-                <a href="/" class="flex items-center gap-2">
-                    <div class="flex h-8 w-8 items-center justify-center rounded-md border border-gray-300 bg-white font-bold">IT</div>
-                    <span class="text-base font-bold uppercase tracking-wider">INVISIBLE TEXT</span>
-                    <div class="h-1 relative bg-emerald-400 mt-0.5"></div>
-                </a>
-                <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-gray-100">
-                    <span class="sr-only">Close menu</span>
-                    <div class="w-6 h-0.5 bg-gray-600 transform rotate-45 translate-y-0.5"></div>
-                    <div class="w-6 h-0.5 bg-gray-600 transform -rotate-45 -translate-y-0"></div>
-                </button>
-            </div>
-            <nav class="p-4 bg-white">
-                <ul class="flex flex-col gap-4">
-                    <li><a href="/features" class="block py-2 text-lg hover:bg-gray-100 p-2 rounded-md hover:text-primary-600">Features</a></li>
-                    <li><a href="/blog" class="block py-2 text-lg hover:bg-gray-100 p-2 rounded-md hover:text-primary-600">Blog</a></li>
-                    <li><a href="/about" class="block py-2 text-lg hover:bg-gray-100 p-2 rounded-md hover:text-primary-600">About Us</a></li>
-                    <li><a href="/contact" class="block py-2 text-lg hover:bg-gray-100 p-2 rounded-md hover:text-primary-600">Contact</a></li>
-                    <li><button class="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300">
-                            <span class="sr-only">Language</span>
-                            <span class="text-sm">🌐</span>
-                        </button></li>
-                </ul>
-            </nav>
-        </div>
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-md">
+  <div class="container mx-auto flex max-w-7xl items-center justify-between p-4">
+    
+    <a href="/" class="flex items-center gap-2">
+      <div class="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-md border border-gray-300 bg-white font-bold">IT</div>
+      <div class="flex flex-col leading-tight">
+        <span class="text-base md:text-lg font-bold uppercase tracking-wider">INVISIBLETEXT</span>
+        <div class="h-1 w-full bg-emerald-400 mt-0.5"></div>
+      </div>
+    </a>
+
+    
+    <div class="flex items-center gap-4 md:hidden">
+    <LanguageSwitcher client:load/>
+      <button
+        id="mobile-menu-button"
+        class="p-2 rounded-md bg-white hover:bg-gray-100 focus:outline-none focus:ring"
+        aria-label="Open mobile menu"
+      >
+        <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-600"></span>
+      </button>
     </div>
+
+    
+    <nav class="hidden md:block">
+      <ul class="flex items-center gap-6">
+        <li><a href="/" class="text-sm hover:text-emerald-400">{t('nav.home')}</a></li>
+        <li><a href="/blog" class="text-sm hover:text-emerald-400">{t('nav.blog')}</a></li>
+        <li><a href="/about" class="text-sm hover:text-emerald-400">{t('nav.about')}</a></li>
+        <li><a href="/unicode-converter" class="text-sm hover:text-emerald-400">Unicode Converter</a></li>
+        <li><LanguageSwitcher client:load /></li>
+      </ul>
+    </nav>
+  </div>
+
+  
+  <div
+    id="mobile-menu"
+    class="fixed top-0 right-[-100vw] z-60 hidden h-screen w-full flex-col bg-white md:hidden transition-transform duration-200 ease-in-out"
+    aria-hidden="true"
+  >
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+      <a href="/" class="flex items-center gap-2">
+        <div class="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-md border border-gray-300 bg-white font-bold">IT</div>
+        <div class="flex flex-col leading-tight">
+          <span class="text-base md:text-lg font-bold uppercase tracking-wider">INVISIBLETEXT</span>
+          <div class="h-1 w-full bg-emerald-400 mt-0.5"></div>
+        </div>
+      </a>
+      <button
+        id="mobile-menu-close"
+        class="top-0 p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring"
+        aria-label="Close mobile menu"
+      >
+     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+       
+      </button>
+    </div>
+    <nav class="flex-grow p-2 overflow-auto bg-white">
+      <ul class="flex flex-col gap-2">
+        <li><a href="/" class="block p-2 text-md rounded-md hover:bg-emerald-50">{t('nav.home')}</a></li>
+        <li><a href="/blog" class="block p-2 text-md rounded-md hover:bg-emerald-50">{t('nav.blog')}</a></li>
+        <li><a href="/about" class="block p-2 text-md rounded-md hover:bg-emerald-50">{t('nav.about')}</a></li>
+        <li><a href="/contact" class="block p-2 text-md rounded-md hover:bg-emerald-50">{t('nav.contact')}</a></li>
+      </ul>
+    </nav>
+
+  </div>
 </header>
 
 
+  
+  <script>
+    const openBtn = document.getElementById('mobile-menu-button');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const panel = document.getElementById('mobile-menu');
 
-<script>
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    mobileMenuButton?.addEventListener('click', () => {
-        mobileMenu?.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+    openBtn?.addEventListener('click', () => {
+      panel?.classList.remove('hidden', 'right-[-100vw]');
+      panel?.classList.add('right-0');
+      document.body.style.overflow = 'hidden';
+      panel?.setAttribute('aria-hidden', 'false');
     });
-
-    mobileMenuClose?.addEventListener('click', () => {
-        mobileMenu?.classList.add('hidden');
-        document.body.style.overflow = '';
+    closeBtn?.addEventListener('click', () => {
+      panel?.classList.add('hidden', 'right-[-100vw]');
+      panel?.classList.remove('right-0')
+      document.body.style.overflow = '';
+      panel?.setAttribute('aria-hidden', 'true');
     });
-</script>
+  </script>

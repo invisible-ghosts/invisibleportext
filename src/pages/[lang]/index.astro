@@ -1,38 +1,46 @@
 ---
-// Component Imports
 import Layout from '@/layouts/Layout.astro';
 import InvisibleTextTool from '@/components/InvisibleText';
 import {Copy, Check} from "lucide-react";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { languages } from '../../i18n/ui';
 
-const title = "Invisible Text - Copy and Paste Blank Character"
-const description = ""
+
+export function getStaticPaths() {
+	return Object.keys(languages).map((lang) => ({
+		params: { lang },
+	}));
+}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = t("meta.title")
+const description = t("meta.description")
 ---
 <Layout title={title} description={description}>
 	<main class="space-y-12">
-		<section class="text-center container mx-auto px-4 py-12">	
+		<section class="text-center container mx-auto px-4 py-12">
 			<h1 class="text-6xl font-black tracking-tight mb-2">
-				INVISIBLE TEXT
+				{t("hero.title")}
 				<div class="h-2 w-1/3 bg-emerald-400 mx-auto mt-2"></div>
 			</h1>
-			<p class="text-lg mt-8 max-w-3xl mx-auto">
-				Welcome to our <span class="font-bold">free online invisible text generator</span>! Hide messages in
-				plain sight using <span class="font-bold">zero-width characters</span>,{" "}
-				<span class="font-bold">color masking</span>, and more.
+			<p class="text-xl mt-8 max-w-3xl mx-auto">
+				{t("hero.subtitle")}
 			</p>
 		</section>
+
 		<section class="container mx-auto px-4">
 			<InvisibleTextTool astroUrl={Astro.url} client:load />
 		</section>
+
 		<section id="what-is" class="container mx-auto px-4 py-12">
 			<h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
-				WHAT IS INVISIBLE TEXT?
+				{t("whatIs.title")}
 				<div class="h-1 w-32 bg-emerald-400 mx-auto mt-2"></div>
 			</h2>
 			<div class="max-w-3xl mx-auto">
 				<p class="text-lg text-gray-700 mb-6">
-				Invisible text refers to characters or strings that are present in a document or message but are not visible
-				to the human eye. These characters take up space in digital text but don't display any visible content.
-				They're often used for formatting, spacing, or hiding information in plain sight.
+				{t("whatIs.content1")}
 				</p>
 				<p class="text-lg text-gray-700 mb-6">The most common types of invisible characters include:</p>
 				<ul class="list-disc pl-6 space-y-2 text-gray-700 mb-6">
@@ -47,24 +55,21 @@ const description = ""
 				</p>
 			</div>
 		</section>
-		<section id="what-is" class="container mx-auto px-4 py-12">
+
+		<section id="what-is" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				WHAT IS INVISIBLE TEXT?
+				{t("whatIs.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="prose prose-lg max-w-none">
-				<p>Invisible text refers to characters or strings that are present in a document or message but are not
-				visible to the naked eye. This is achieved through various techniques such as using zero-width characters,
-				applying color masking (white text on white background), or utilizing special Unicode characters that have
-				no visible representation.</p>
-				<p>These invisible characters still exist in the digital space and can be copied, pasted, and transmitted
-				just like regular text. However, they remain hidden from casual observation, making them useful for
-				various applications where discreet communication is desired.</p>
+				<p>{t("whatIs.content1")}</p>
+				<p>{t("whatIs.content2")}</p>
 			</div>
 		</section>	
+
 		<section id="how-to" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				HOW TO COPY-PASTE INVISIBLE TEXT
+				{t("howTo.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -72,93 +77,89 @@ const description = ""
 				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
 					<span class="font-bold text-xl">1</span>
 				</div>
-				<h3 class="text-xl font-bold mb-2">Choose Method</h3>
-				<p>Select from our quick copy buttons, manual selection, or custom generator options.</p>
+				<h3 class="text-xl font-bold mb-2">{t("step1.title")}</h3>
+				<p>{t("step1.content")}</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
 				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
 					<span class="font-bold text-xl">2</span>
 				</div>
-				<h3 class="text-xl font-bold mb-2">Copy</h3>
-				<p>Copy the invisible characters to your clipboard with a single click.</p>
+				<h3 class="text-xl font-bold mb-2">{t("step2.title")}</h3>
+				<p>{t("step2.content")}</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
 				<div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
 					<span class="font-bold text-xl">3</span>
 				</div>
-				<h3 class="text-xl font-bold mb-2">Test & Use</h3>
-				<p>Test your invisible text in our testing area, then use it anywhere you need it.</p>
+				<h3 class="text-xl font-bold mb-2">{t("step3.title")}</h3>
+				<p>{t("step3.content")}</p>
 				</div>
 			</div>
 		</section>
+
 		<section id="why-use" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				WHY WOULD YOU NEED INVISIBLE TEXT?
+				{t("whyUse.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Privacy & Discretion</h3>
+				<h3 class="text-xl font-bold mb-4">{t("privacy.title")}</h3>
 				<p>
-					Invisible text allows you to hide messages in plain sight, providing an additional layer of privacy for
-					sensitive information that you don't want to be immediately visible.
+					{t("privacy.content")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Creative Uses</h3>
+				<h3 class="text-xl font-bold mb-4">{t("creative.title")}</h3>
 				<p>
-					Create unique usernames in games, send blank messages on social platforms, or add hidden watermarks to
-					your content to track unauthorized copying.
+					{t("creative.content")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Digital Steganography</h3>
+				<h3 class="text-xl font-bold mb-4">{t("steganography.title")}</h3>
 				<p>
-					Hide messages within other messages or documents, allowing for covert communication that doesn't draw
-					attention to itself.
+					{t("steganography.content")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Accessibility</h3>
+				<h3 class="text-xl font-bold mb-4">{t("accessibility.title")}</h3>
 				<p>
-					Add hidden context or metadata to content that can be accessed by screen readers or other assistive
-					technologies without affecting visual presentation.
+					{t("accessibility.content")}
 				</p>
 				</div>
 			</div>
 		</section>	
+
 		<section id="who-uses" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				WHO USES INVISIBLE TEXT?
+				{t("whoUses.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Gamers</h3>
+				<h3 class="text-xl font-bold mb-4">{t("gamers.title")}</h3>
 				<p>
-					Players of games like Free Fire, PUBG, and other online games use invisible characters to create unique,
-					minimal usernames that stand out or appear blank.
+					{t("gamerscontent")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Social Media Users</h3>
+				<h3 class="text-xl font-bold mb-4">{t("whoUse.socialMedia.title")}</h3>
 				<p>
-					People who want to create unique profiles, send blank messages, or hide information within regular posts
-					on platforms like Instagram, Twitter, and Discord.
+					{t("whoUse.socialMedia.content")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Content Creators</h3>
+				<h3 class="text-xl font-bold mb-4">{t("contentcreator.title")}</h3>
 				<p>
-					Writers, designers, and digital artists who want to add hidden watermarks or metadata to their work to
-					track unauthorized use.
+					{t("contentcreator.content")}
 				</p>
 				</div>
 			</div>
 		</section>
+
 		<section id="features" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				FEATURES OF OUR INVISIBLE TEXT TOOL
+				{t("features.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -167,8 +168,8 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Multiple Invisibility Methods</h3>
-					<p>Choose from various techniques including zero-width characters, color masking, and more.</p>
+					<h3 class="text-xl font-bold mb-2">{t("methods.title")}</h3>
+					<p>{t("methods.content")}</p>
 				</div>
 				</div>
 				<div class="flex gap-4">
@@ -176,8 +177,8 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Quick Copy Buttons</h3>
-					<p>Instantly copy small, medium, or large invisible characters with a single click.</p>
+					<h3 class="text-xl font-bold mb-2">{t("quickCopy.title")}</h3>
+					<p>{t("quickCopy.content")}</p>
 				</div>
 				</div>
 				<div class="flex gap-4">
@@ -185,8 +186,8 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Custom Generator</h3>
-					<p>Generate any number of invisible characters from 1 to infinity with our custom generator.</p>
+					<h3 class="text-xl font-bold mb-2">{t("customGenerator.title")}</h3>
+					<p>{t("customGenerator.content")}</p>
 				</div>
 				</div>
 				<div class="flex gap-4">
@@ -194,8 +195,8 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Testing Area</h3>
-					<p>Test your invisible characters before using them to ensure they work as expected.</p>
+					<h3 class="text-xl font-bold mb-2">{t("testingArea.title")}</h3>
+					<p>{t("testingArea.content")}</p>
 				</div>
 				</div>
 				<div class="flex gap-4">
@@ -203,8 +204,8 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Character Counter</h3>
-					<p>See exactly how many invisible characters you've generated or pasted.</p>
+					<h3 class="text-xl font-bold mb-2">{t("counter.title")}</h3>
+					<p>{t("counter.content")}</p>
 				</div>
 				</div>
 				<div class="flex gap-4">
@@ -212,15 +213,16 @@ const description = ""
 					<Check className="w-6 h-6 text-emerald-600" />
 				</div>
 				<div>
-					<h3 class="text-xl font-bold mb-2">Advanced Text Encoding</h3>
-					<p>Hide entire messages within invisible characters that can be decoded later.</p>
+					<h3 class="text-xl font-bold mb-2">{t("encoding.title")}</h3>
+					<p>{t("encoding.content")}</p>
 				</div>
 				</div>
 			</div>
 		</section>
+
 		<section id="benefits" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				BENEFITS OF USING INVISIBLETEXT.TOP
+				{t("benefits.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="bg-white p-8 rounded-xl border-2 border-black shadow-md">
@@ -230,8 +232,8 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">100% Free</h3>
-					<p class="text-sm">No hidden fees or premium features locked behind paywalls.</p>
+					<h3 class="text-lg font-bold mb-1">{t("free.title")}</h3>
+					<p class="text-sm">{t("free.content")}</p>
 					</div>
 				</div>
 				<div class="flex gap-4">
@@ -239,8 +241,8 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">No Registration Required</h3>
-					<p class="text-sm">Use our tool instantly without creating an account.</p>
+					<h3 class="text-lg font-bold mb-1">{t("noRegistration.title")}</h3>
+					<p class="text-sm">{t("noRegistration.content")}</p>
 					</div>
 				</div>
 				<div class="flex gap-4">
@@ -248,8 +250,8 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">Privacy-Focused</h3>
-					<p class="text-sm">We don't store your text or track your usage.</p>
+					<h3 class="text-lg font-bold mb-1">{t("privacy.title2")}</h3>
+					<p class="text-sm">{t("privacy.content2")}</p>
 					</div>
 				</div>
 				<div class="flex gap-4">
@@ -257,8 +259,8 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">User-Friendly Interface</h3>
-					<p class="text-sm">Simple, intuitive design that anyone can use.</p>
+					<h3 class="text-lg font-bold mb-1">{t("userFriendly.title")}</h3>
+					<p class="text-sm">{t("userFriendly.content")}</p>
 					</div>
 				</div>
 				<div class="flex gap-4">
@@ -266,8 +268,8 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">More Methods Than Competitors</h3>
-					<p class="text-sm">We offer more ways to create and use invisible text than any other tool.</p>
+					<h3 class="text-lg font-bold mb-1">{t("moreMethods.title")}</h3>
+					<p class="text-sm">{t("moreMethods.content")}</p>
 					</div>
 				</div>
 				<div class="flex gap-4">
@@ -275,115 +277,103 @@ const description = ""
 					<Check className="w-5 h-5 text-emerald-600" />
 					</div>
 					<div>
-					<h3 class="text-lg font-bold mb-1">Mobile-Friendly</h3>
-					<p class="text-sm">Works perfectly on smartphones and tablets.</p>
+					<h3 class="text-lg font-bold mb-1">{t("mobileFriendly.title")}</h3>
+					<p class="text-sm">{t("mobileFriendly.content")}</p>
 					</div>
 				</div>
 				</div>
 			</div>
 		</section>
+
 		<section id="use-cases" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				PRACTICAL USE CASES
+				{t("useCases.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Gaming</h3>
+				<h3 class="text-xl font-bold mb-4">{t("gaming.title")}</h3>
 				<p class="mb-4">
-					Create unique "invisible" usernames in games like Free Fire, PUBG, and other online games to stand out
-					from other players.
+					{t("gaming.content")}
 				</p>
 				<div class="bg-gray-100 p-4 rounded-lg">
-					<p class="text-sm font-medium">Example:</p>
+					<p class="text-sm font-medium">{t("gaming.example")}</p>
 					<p class="font-mono">PlayerName: "⁣ ⁣"</p>
-					<p class="text-xs text-gray-500 mt-2">(Appears as a blank or minimal username)</p>
+					<p class="text-xs text-gray-500 mt-2">{t("gaming.note")}</p>
 				</div>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Social Media</h3>
+				<h3 class="text-xl font-bold mb-4">{t("socialMedia.title")}</h3>
 				<p class="mb-4">
-					Send blank messages on platforms like WhatsApp, Telegram, or Discord, or create unique-looking profiles.
+					{t("socialMedia.content")}
 				</p>
 				<div class="bg-gray-100 p-4 rounded-lg">
-					<p class="text-sm font-medium">Example:</p>
+					<p class="text-sm font-medium">{t("socialMedia.example")}</p>
 					<p class="font-mono">Message: "⁣ ⁣"</p>
 					<p class="text-xs text-gray-500 mt-2">
-					(Appears as an empty message but can be copied and decoded)
+					{t("socialMedia.note")}
 					</p>
 				</div>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Digital Watermarking</h3>
+				<h3 class="text-xl font-bold mb-4">{t("watermarking.title")}</h3>
 				<p class="mb-4">
-					Add invisible signatures to your content that can be used to verify authenticity or track unauthorized
-					copying.
+					{t("watermarking.content")}
 				</p>
 				<div class="bg-gray-100 p-4 rounded-lg">
-					<p class="text-sm font-medium">Example:</p>
-					<p class="font-mono">Document: "This is my content‍‌‍‌‍‌‍‌."</p>
-					<p class="text-xs text-gray-500 mt-2">(Contains hidden watermark that's invisible to readers)</p>
+					<p class="text-sm font-medium">{t("watermarking.example.content")}</p>
+					<p class="font-mono">{t("watermarking.example")}</p>
+					<p class="text-xs text-gray-500 mt-2">{t("watermarking.note")}</p>
 				</div>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-4">Hidden Messages</h3>
+				<h3 class="text-xl font-bold mb-4">{t("hiddenMessages.title")}</h3>
 				<p class="mb-4">
-					Embed secret messages within regular text that can only be revealed by those who know to look for them.
+					{t("hiddenMessages.content")}
 				</p>
 				<div class="bg-gray-100 p-4 rounded-lg">
-					<p class="text-sm font-medium">Example:</p>
-					<p class="font-mono">Public post: "Great weather today!‍‌‍‌‍‌‍‌"</p>
-					<p class="text-xs text-gray-500 mt-2">(Contains hidden message: "Meet at 5pm")</p>
+					<p class="text-sm font-medium">{t("hiddenMessages.example")}</p>
+					<p class="font-mono">{t("hiddenMessages.examplecontent")}</p>
+					<p class="text-xs text-gray-500 mt-2">{t("hiddenMessages.note")}</p>
 				</div>
 				</div>
 			</div>
 		</section>
+
 		<section id="faq" class="max-w-4xl container mx-auto px-4 py-12">
 			<h2 class="text-4xl font-black tracking-tight mb-8">
-				FREQUENTLY ASKED QUESTIONS
+				{t("faq.title")}
 				<div class="h-1 w-24 bg-emerald-400 mt-2"></div>
 			</h2>
 			<div class="space-y-6">
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-2">Is invisible text really invisible?</h3>
+				<h3 class="text-xl font-bold mb-2">{t("faq.question")}</h3>
+				<p>{t("faq.answer")}</p>
+				</div>
+				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+				<h3 class="text-xl font-bold mb-2">{t("faq.question2")}</h3>
 				<p>
-					Yes, invisible text is not visible to the naked eye when viewed normally. However, it can be revealed by
-					selecting the text, using our decoder tool, or through certain text editors that display special
-					characters.
+					{t("faq.answer2")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-2">Will invisible text work on all platforms?</h3>
+				<h3 class="text-xl font-bold mb-2">{t("faq.question3")}</h3>
 				<p>
-					Most invisible text methods work across a wide range of platforms including social media, messaging
-					apps, and games. However, some platforms may have restrictions or filters that affect how invisible text
-					is displayed.
+					{t("faq.answer3")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-2">Is using invisible text allowed in games?</h3>
+				<h3 class="text-xl font-bold mb-2">{t("faq.question4")}</h3>
 				<p>
-					This depends on the specific game's terms of service. Some games may consider using invisible characters
-					for usernames as a violation of their rules. Always check the game's policies before using invisible
-					text.
-				</p>
-				</div>
-				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
-				<h3 class="text-xl font-bold mb-2">How do I decode invisible text?</h3>
-				<p>
-					You can decode invisible text by using our "Test & Copy" area. Simply paste the text containing
-					invisible characters, and our tool will show you the character count and allow you to see the hidden
-					content.
+					{t("faq.answer4")}
 				</p>
 				</div>
 				<div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
 				<h3 class="text-xl font-bold mb-2">
-					What's the difference between the small, medium, and large invisible characters?
+					{t("faq.question5")}
 				</h3>
 				<p>
-					The small, medium, and large options refer to the number of invisible characters generated. Small
-					creates 1 character, medium creates 5 characters, and large creates 10 characters. More characters can
-					make the invisible text more robust on certain platforms.
+					{t("faq.answer5")}
 				</p>
 				</div>
 			</div>

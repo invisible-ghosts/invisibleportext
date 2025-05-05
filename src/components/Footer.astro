@@ -1,3 +1,16 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { languages } from '@/i18n/ui';
+
+
+export function getStaticPaths() {
+	return Object.keys(languages).map((lang) => ({
+		params: { lang },
+	}));
+}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
 <footer class="bg-white border-t-2 border-black pt-8">
   <div class="container mx-auto px-4 py-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
@@ -11,60 +24,59 @@
             <div class="h-1 w-full bg-emerald-400 mt-0.5"></div>
           </span>
         </a>
-        <p class="text-sm mt-2">© 2025 invisibletext.top. All rights reserved.</p>
       </div>
       <div class="flex flex-col md:flex-row gap-8">
         <div>
-          <h4 class="font-bold mb-2">Navigation</h4>
+          <h4 class="font-bold mb-2">{t("nav.navigation")}</h4>
           <ul class="space-y-1">
             <li>
-              <a href="#" class="text-sm hover:text-emerald-500 transition-colors">
-                Home
+              <a href="/" class="text-sm hover:text-emerald-500 transition-colors">
+                {t("nav.home")}
               </a>
             </li>
             <li>
-              <a href="#features" class="text-sm hover:text-emerald-500 transition-colors">
-                Features
+              <a href="/#features" class="text-sm hover:text-emerald-500 transition-colors">
+                {t("nav.features")}
               </a>
             </li>
             <li>
-              <a href="#use-cases" class="text-sm hover:text-emerald-500 transition-colors">
-                Use Cases
+              <a href="/#use-cases" class="text-sm hover:text-emerald-500 transition-colors">
+                {t("nav.usecases")}
               </a>
             </li>
             <li>
-              <a href="#faq" class="text-sm hover:text-emerald-500 transition-colors">
-                FAQ
+              <a href="/#faq" class="text-sm hover:text-emerald-500 transition-colors">
+                {t("nav.faqs")}
               </a>
             </li>
             <li>
               <a href="/blog" class="text-sm hover:text-emerald-500 transition-colors">
-                Resources
+                {t("nav.resource")}
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <h4 class="font-bold mb-2">Legal</h4>
+          <h4 class="font-bold mb-2">{t("nav.legal")}</h4>
           <ul class="space-y-1">
             <li>
               <a href="/privacy-policy" class="text-sm hover:text-emerald-500 transition-colors">
-                Privacy Policy
+                {t("nav.privacy")}
               </a>
             </li>
             <li>
               <a href="/terms-and-conditions" class="text-sm hover:text-emerald-500 transition-colors">
-                Terms of Service
+                {t("nav.term")}
               </a>
             </li>
           </ul>
         </div>
         <div>
-          <h4 class="font-bold mb-2">Contact</h4>
+          <h4 class="font-bold mb-2">{t("foot.contact")}</h4>
           <ul class="space-y-1">
             <li>
               <a href="/about" class="text-sm hover:text-emerald-500 transition-colors">
-                About Us
+                {t("nav.about")}
               </a>
             </li>
             <li>
@@ -77,7 +89,7 @@
       </div>
     </div>
   </div>
-  <div class="border-t border-slate-50">
-    <p class="text-sm py-2 text-center">© 2025 InvisibleText.Top. All rights reserved.</p>
+  <div class="border-t border-emerald-100">
+    <p class="text-sm py-2 text-center">{t("foot.copyrights")}</p>
   </div>
 </footer>

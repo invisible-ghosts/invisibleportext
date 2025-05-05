@@ -1,0 +1,102 @@
+---
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, MessageSquare, AlertCircle } from 'lucide-react';
+import Layout from "@/layouts/Layout.astro";
+
+// const structuredData = {
+//   "@context": "https://schema.org",
+//   "@type": "ContactPage",
+//   name: "Contact | invisibletext.pro",
+//   description: "Reach out to invisibletext.pro with questions, feedback, or collaboration ideas.",
+//   url: "https://invisibletext.pro/en/contact",
+//   publisher: {
+//     "@type": "Organization",
+//     name: "invisibletext.pro",
+//     contactPoint: {
+//       "@type": "ContactPoint",
+//       email: "contact@invisibletext.pro",
+//       contactType: "customer service",
+//     },
+//   },
+// };
+---
+<Layout title="Contact Us - INVISIBLETEXT.PRO" description="">
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-black tracking-tight mb-8 text-center">Contact Us
+        <div class="h-2 w-24 bg-emerald-400 mx-auto mt-4"></div>
+      </h1>
+
+      <p class="text-lg text-center mb-12 max-w-2xl mx-auto">
+        Have questions, suggestions, or just want to say hello? Reach out to us via the form below or through social channels.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+          <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+            <Mail className="w-6 h-6 text-emerald-600" />
+          </div>
+          <h3 class="text-xl font-bold mb-2">Email Us</h3>
+          <p class="mb-4">contact@invisibletext.pro</p>
+          <p class="text-sm text-gray-500">We usually reply within 24 hours.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+          <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+            <MessageSquare className="w-6 h-6 text-emerald-600" />
+          </div>
+          <h3 class="text-xl font-bold mb-2">Follow Us</h3>
+          <div class="flex gap-4 mb-4">
+            <!-- Social media icons omitted for brevity -->
+          </div>
+          <p class="text-sm text-gray-500">Stay connected on social media.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border-2 border-black shadow-md">
+          <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+            <AlertCircle className="w-6 h-6 text-emerald-600" />
+          </div>
+          <h3 class="text-xl font-bold mb-2">FAQs</h3>
+          <p class="mb-4">Looking for quick answers? Visit our FAQ section.</p>
+          <a href="/en/#faq" class="text-emerald-600 font-medium hover:text-emerald-700 transition-colors">
+            Visit FAQ →
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-xl border-2 border-black shadow-lg">
+        <h2 class="text-2xl font-bold mb-6">Send a Message</h2>
+        <form id="contact-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-2">Name</label>
+              <Input id="name" name="name" required className="border-2 border-black" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-2">Email</label>
+              <Input id="email" name="email" type="email" required className="border-2 border-black" />
+            </div>
+          </div>
+
+          <div>
+            <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
+            <Input id="subject" name="subject" required className="border-2 border-black" />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+            <Textarea id="message" name="message" required className="min-h-[150px] border-2 border-black" />
+          </div>
+
+          <Button type="submit" className="bg-black hover:bg-gray-800 text-white py-3 px-6">
+            Submit
+          </Button>
+
+          <div id="status-message" style="display: none;"></div>
+        </form>
+      </div>
+    </div>
+  </main>
+</Layout>
