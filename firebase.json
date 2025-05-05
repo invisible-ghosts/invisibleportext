@@ -1,5 +1,7 @@
 {
   "hosting": {
+    "site": "invisbletextdotpro",
+    "public": "public",
     "source": ".",
     "ignore": [
       "firebase.json",

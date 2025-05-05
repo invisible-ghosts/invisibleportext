@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "invisibleportext"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "invisibleportext-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
